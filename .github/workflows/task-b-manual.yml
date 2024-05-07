@@ -47,4 +47,17 @@ jobs:
                   push: true
                   tags: ghcr.io/${{ github.repository }}:${{ inputs.tag }}
                   labels: ${{ steps.meta.outputs.labels }}
-    # TODO: Add test job
+    test:
+        runs-on: ubuntu-latest
+        name: Test
+        needs: docker
+        services:
+            docker:
+                image: ghcr.io/${{ github.repository }}:${{ inputs.tag }}
+                ports:
+                    - 8080:80
+        steps:
+            - name: Wait for service
+              run: sleep 5
+            - name: Check index.html
+              run: curl 127.0.0.1:8080/index.html
