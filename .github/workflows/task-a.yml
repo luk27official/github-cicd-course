@@ -4,7 +4,6 @@ on:
     pull_request:
         branches:
             - main
-        # Paths to watch that will trigger the workflow
         paths:
             - "task_a/**"
 
