@@ -22,4 +22,9 @@ jobs:
                   pip install -r ./task_a/requirements.txt
             - name: Run tests
               run: |
-                  pytest ./task_a/task_a.py
+                  pytest ./task_a/task_a.py --html=report.html --self-contained-html
+            - name: Upload test results
+              uses: actions/upload-artifact@v2
+              with:
+                  name: test-results
+                  path: ./task_a/report.html
