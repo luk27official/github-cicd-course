@@ -24,7 +24,14 @@ jobs:
             - name: Setup virtual environment
               run: |
                   python -m venv venv
-                  source venv/bin/activate
+                  if [ -f "venv/bin/activate" ]; then
+                    source venv/bin/activate  # For Linux
+                  elif [ -f "venv/Scripts/activate" ]; then
+                    . venv/Scripts/activate  # For Windows
+                  else
+                    echo "Error: Failed to activate virtual environment."
+                    exit 1
+                  fi
             - name: Install dependencies
               run: |
                   pip install -r ./task_a/requirements.txt
