@@ -1,4 +1,4 @@
-name: task-a cd
+name: task-a
 
 on: [push]
 
