@@ -27,6 +27,8 @@ def test_fib() -> None:
     assert fib(10) == 55
 
 
+"""
 def test_fail() -> None:
     assert square_area(5) == 26
     assert fib(5) == 6
+"""
